@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    select {
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <select name="" id="sheng">
+    <option value="">请选择</option>
+  </select>
+  <select name="" id="shi">
+    <option value="">请选择</option>
+  </select>
+  <select name="" id="xian">
+    <option value="">请选择</option>
+  </select>
+  <script src="./jquery.min.js"></script>
+  <script src="./city.js"></script>
+  <script>
+    for (let item in cities) {
+      $('#sheng').append(`<option value="${item}">${item}</option>`)
+      var a = cities[item]
+    }
+
+    $('#sheng').change(function() {
+        $('#shi').html(`<option value="">请选择</option>`)
+        $('#xian').html(`<option value="">请选择</option>`)
+      for(let item in cities[this.value]) {
+        $('#shi').append(`<option value="${item}">${item}</option>`)
+      }
+    })
+
+    $('#shi').change(function() {
+        $('#xian').html(`<option value="">请选择</option>`)
+      for(let item in cities[$('#sheng').val()][this.value]) {
+        var xian = cities[$('#sheng').val()][this.value][item]
+        $('#xian').append(`<option value="${xian}">${xian}</option>`)
+      }
+    })
+  </script>
+</body>
+</html>
